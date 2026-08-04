@@ -1,14 +1,14 @@
 import {
     BrowserRouter,
     Routes,
-    Route
+    Route,
+    Navigate
 } from "react-router-dom";
 
 import PrivateRoute from "./routes/PrivateRoute";
 
 import Login from "./pages/auth/Login";
 import Dashboard from "./pages/dashboard/Dashboard";
-
 import Pacientes from "./pages/pacientes/Pacientes";
 import Medicos from "./pages/medicos/Medicos";
 import Especialidades from "./pages/especialidades/Especialidades";
@@ -17,29 +17,37 @@ import Usuarios from "./pages/usuarios/Usuarios";
 
 function App() {
 
+    const token = localStorage.getItem("token");
+
     return (
 
         <BrowserRouter>
 
             <Routes>
 
-                {/* LOGIN */}
-
-                <Route
-                    path="/login"
-                    element={<Login />}
-                />
-
-                {/* DASHBOARD */}
+                {/* Página principal */}
 
                 <Route
                     path="/"
                     element={
-                        <PrivateRoute>
-                            <Dashboard />
-                        </PrivateRoute>
+                        token
+                            ? <Navigate to="/dashboard" replace />
+                            : <Navigate to="/login" replace />
                     }
                 />
+
+                {/* Login */}
+
+                <Route
+                    path="/login"
+                    element={
+                        token
+                            ? <Navigate to="/dashboard" replace />
+                            : <Login />
+                    }
+                />
+
+                {/* Dashboard */}
 
                 <Route
                     path="/dashboard"
@@ -50,7 +58,7 @@ function App() {
                     }
                 />
 
-                {/* PACIENTES */}
+                {/* Pacientes */}
 
                 <Route
                     path="/pacientes"
@@ -61,7 +69,7 @@ function App() {
                     }
                 />
 
-                {/* MEDICOS */}
+                {/* Médicos */}
 
                 <Route
                     path="/medicos"
@@ -72,7 +80,7 @@ function App() {
                     }
                 />
 
-                {/* ESPECIALIDADES */}
+                {/* Especialidades */}
 
                 <Route
                     path="/especialidades"
@@ -83,7 +91,7 @@ function App() {
                     }
                 />
 
-                {/* CITAS */}
+                {/* Citas */}
 
                 <Route
                     path="/citas"
@@ -94,7 +102,7 @@ function App() {
                     }
                 />
 
-                {/* USUARIOS */}
+                {/* Usuarios */}
 
                 <Route
                     path="/usuarios"
@@ -103,6 +111,13 @@ function App() {
                             <Usuarios />
                         </PrivateRoute>
                     }
+                />
+
+                {/* Ruta inexistente */}
+
+                <Route
+                    path="*"
+                    element={<Navigate to="/" replace />}
                 />
 
             </Routes>
