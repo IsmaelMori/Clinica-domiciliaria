@@ -1,11 +1,11 @@
 Clonar
 
-git clone git clone https://github.com/IsmaMori/ClinicaDomiciliaria.git
+git clone git clone https://github.com/IsmaMori/Clinica-domiciliaria.git
 
 
 Entrar
 
-cd Clinica
+cd ClinicaDomiciliaria
 
 Levantar
 
