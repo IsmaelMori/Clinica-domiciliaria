@@ -1,6 +1,7 @@
 Clonar
 
-git clone ...
+git clone git clone https://github.com/IsmaMori/ClinicaDomiciliaria.git
+
 
 Entrar
 
