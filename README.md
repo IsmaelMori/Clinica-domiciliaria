@@ -13,7 +13,7 @@ docker compose up
 
 Abrir
 
-http://localhost:5173
+http://localhost:5173/login
 
 Swagger
 
